@@ -11,7 +11,7 @@ module "ec2" {
 }
  
 resource "aws_s3_bucket_object" "tf_zip_upload" {
-  bucket = var.artifact_bucket
+bucket = var.artifact_bucket
 key = "terraform.zip"
 source = "terraform.zip"
 etag = filemd5("terraform.zip")
@@ -32,9 +32,6 @@ resource "aws_servicecatalog_product" "demo_product" {
     name        = "v1"
     description = "Initial version"
     type        = "TERRAFORM_OPEN_SOURCE"
-    info = {
-    LoadTemplateFromURL = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
-    }
   }
 }
  
@@ -45,5 +42,5 @@ product_id = aws_servicecatalog_product.demo_product.id
  
 resource "aws_servicecatalog_principal_portfolio_association" "user_assoc" {
 portfolio_id = aws_servicecatalog_portfolio.demo_portfolio.id
-user         = var.end_user_arn
+principal_arn = var.end_user_arn
 }
