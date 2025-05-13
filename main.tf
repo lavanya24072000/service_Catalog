@@ -32,6 +32,7 @@ resource "aws_servicecatalog_product" "demo_product" {
     name        = "v1"
     description = "Initial version"
     type        = "TERRAFORM_OPEN_SOURCE"
+    template_url = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
   }
 }
  
