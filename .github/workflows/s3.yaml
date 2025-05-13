@@ -54,11 +54,10 @@ jobs:
         run: terraform validate 
 
       - name: Terraform plan (Create EC2)
-        run: terraform plan -var-file="terraform.tfvars"
+        run: terraform plan 
 
       - name: Terraform apply (Create EC2)
-        run: terraform apply -auto-approve -var-file ="terraform.tfvars"
-        
+        run: terraform apply -auto-approve 
  
       - name: Upload ZIP to S3
         run: |
