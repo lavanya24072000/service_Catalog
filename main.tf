@@ -33,17 +33,17 @@ resource "aws_servicecatalog_product" "demo_product" {
     description = "Initial version"
     type        = "TERRAFORM_OPEN_SOURCE"
     info = {
-LoadTemplateFromURL = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
+    LoadTemplateFromURL = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
     }
   }
 }
  
-resource "aws_servicecatalog_portfolio_product_association" "assoc" {
+resource "aws_servicecatalog_product_portfolio_association" "assoc" {
 portfolio_id = aws_servicecatalog_portfolio.demo_portfolio.id
 product_id = aws_servicecatalog_product.demo_product.id
 }
  
-resource "aws_servicecatalog_portfolio_user_association" "user_assoc" {
+resource "aws_servicecatalog_principal_portfolio_association" "user_assoc" {
 portfolio_id = aws_servicecatalog_portfolio.demo_portfolio.id
-  user         = var.end_user_arn
+user         = var.end_user_arn
 }
