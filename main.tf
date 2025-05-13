@@ -26,12 +26,12 @@ resource "aws_servicecatalog_portfolio" "demo_portfolio" {
 resource "aws_servicecatalog_product" "demo_product" {
   name  = "EC2 and S3 Terraform Product"
   owner = "DevOps Team"
-  type  = "TERRAFORM_OPEN_SOURCE"
+  type  = "EXTERNAL"
  
   provisioning_artifact_parameters {
     name        = "v1"
     description = "Initial version"
-    type        = "TERRAFORM_OPEN_SOURCE"
+    type        =  "EXTERNAL"
     template_url = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
   }
 }
