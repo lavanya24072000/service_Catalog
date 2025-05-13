@@ -8,7 +8,7 @@ on:
  
 env:
   AWS_REGION:  us-west-1
-  S3_BUCKET: prashola_lavanya_demo
+  S3_BUCKET: prasholademo01
   S3_KEY: service-catalog/terraform.zip     
   ZIP_FILE: terraform.zip
  
