@@ -30,23 +30,23 @@ jobs:
           role-to-assume: arn:aws:iam::380183619747:role/summa
           aws-region: ${{ env.AWS_REGION }}
           
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.10.5
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     terraform_version: 1.10.5
           
-      - name: Terraform formtat (Create EC2)
-        run: terraform fmt
+      # - name: Terraform formtat (Create EC2)
+      #   run: terraform fmt
         
 
-      - name: Terraform init (Create EC2)
-        run: terraform init
+      # - name: Terraform init (Create EC2)
+      #   run: terraform init
         
-      - name: Terraform validate 
-        run: terraform validate 
+      # - name: Terraform validate 
+      #   run: terraform validate 
 
-      - name: Terraform plan (Create EC2)
-        run: terraform plan
+      # - name: Terraform plan (Create EC2)
+      #   run: terraform plan
         
       - name: Install zip
         run: sudo apt-get install -y zip
