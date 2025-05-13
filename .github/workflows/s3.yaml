@@ -1,0 +1,45 @@
+name: Upload Terraform to AWS Service Catalog
+ 
+on:
+  push:
+    branches:
+      - main
+
+ 
+env:
+  AWS_REGION:  us-west-1
+  S3_BUCKET: prashola_lavanya_demo
+  S3_KEY: service-catalog/terraform.zip     
+  ZIP_FILE: terraform.zip
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+ 
+    permissions:
+      id-token: write
+      contents: read
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+ 
+      - name: Set up AWS Credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::380183619747:role/summa
+          aws-region: ${{ env.AWS_REGION }}
+ 
+      - name: Install zip
+        run: sudo apt-get install -y zip
+ 
+      - name: Zip Terraform Code
+        run: |
+          zip -r ${{ env.ZIP_FILE }} . -x ".git/*" ".github/*" "*.zip"
+ 
+      - name: Upload ZIP to S3
+        run: |
+          aws s3 cp ${{ env.ZIP_FILE }} s3://${{ env.S3_BUCKET }}/${{ env.S3_KEY }}
+          echo "Uploaded to S3://${{ env.S3_BUCKET }}/${{ env.S3_KEY }}"
+ 
+ 
