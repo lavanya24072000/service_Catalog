@@ -34,6 +34,7 @@ resource "aws_servicecatalog_product" "demo_product" {
     type        =  "EXTERNAL"
     template_url = "https://${var.artifact_bucket}.s3.amazonaws.com/terraform.zip"
   }
+    disable_template_validation = true
 }
  
 resource "aws_servicecatalog_product_portfolio_association" "assoc" {
